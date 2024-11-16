@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!-- This links to the Chart.js available by cdn.  -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+<body>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+		<li><a href="crud-bicycles.html">Bicycles</a></li>
+		<li><a href="about.html">About</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+      </ul> 
+      <hr>     
+<h1>Welcome to Analytics!</h1>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Darth Sidious rides a Cruiser Bike', 'Darth Vader rides a Electric Bike', 'Obi-Wan Kenobi rides a Mountain Bike', 'Yoda rides a Tricycle', 'Princess Leia rides a Hybrid Bike', 'Luke Skywalker rides a Road Bike', 'Han Solo rides a Mountain Bike', 'Other'],
+        datasets: [{
+          label: '# of Votes',
+          data: [43, 34, 39, 41, 44, 38, 40, 64],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
