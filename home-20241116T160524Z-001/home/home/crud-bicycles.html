@@ -20,15 +20,34 @@
     starwarsbikeriders();
 </script>
 
+	<h2>Assign Bicycles to Star Wars Characters</h2>
+	<label>Character Name:</label> <input id="charName" placeholder="Enter character name">
+	<label>Bicycle Type:</label> <input id="bikeType" placeholder="Enter bicycle type">
+	<button onclick="addAssignment()">The Force is Strong With This One!</button>
 
-    <ul id="characterList"></ul>
-	<form>
-		<label for="fname">Character Name:</label><br>
-		<input type="text" id="fname" name="fname"><br>
-		<label for="lname">Bicycle Type: </label><br>
-		<input type="text" id="lname" name="lname">
-		<input type="submit" value="The Force is Strong With This One!">
-	</form>
+	<table id="assignments">
+		<thead><tr><th>Character Name</th><th>Bicycle Type</th><th>Actions</th></tr></thead>
+		<tbody></tbody>
+	</table>
+
+	<script>
+		const addAssignment = () => {
+			const [char, bike] = [document.getElementById('charName').value, document.getElementById('bikeType').value];
+			if (!char || !bike) return alert("Fill both fields.");
+			document.querySelector('#assignments tbody').innerHTML += `
+				<tr><td>${char}</td><td>${bike}</td>
+				<td><button onclick="editEntry(this)">Edit</button> <button onclick="this.closest('tr').remove()">Delete</button></td></tr>`;
+			document.getElementById('charName').value = ''; document.getElementById('bikeType').value = '';
+		};
+		const editEntry = (btn) => {
+			const row = btn.closest('tr'), [char, bike] = [row.children[0], row.children[1]];
+			char.textContent = prompt("Edit Character Name:", char.textContent) || char.textContent;
+			bike.textContent = prompt("Edit Bicycle Type:", bike.textContent) || bike.textContent;
+		};
+	</script>
+
+
+
 
     <h1>Star Wars Characters</h1>
 
